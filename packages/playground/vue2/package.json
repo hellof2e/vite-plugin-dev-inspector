@@ -1,0 +1,20 @@
+{
+  "name": "playground-vue2",
+  "private": true,
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@vue/composition-api": "^1.7.2",
+    "vue": "2.7.14",
+    "vue-property-decorator": "^9.1.2",
+    "vue-template-compiler": "2.7.14"
+  },
+  "devDependencies": {
+    "sass": "^1.68.0",
+    "vite-plugin-externals": "^0.6.2",
+    "vite-plugin-click-to-vue-component": "workspace:*",
+    "vite-plugin-vue2": "^1.9.3"
+  }
+}
