@@ -1,9 +1,9 @@
 
-## 📖 Introduction
+## Introduction
 
 A vite plugin which provides the ability that to jump to the local IDE when you click the element of browser automatically. It supports Vue2 & 3 & SSR.
 
-## 📦 Installation
+## Installation
 
 ```bash
 
@@ -14,7 +14,7 @@ pnpm install vite-plugin-click-to-vue-component -D
 
 ```
 
-## 🦄 Usage
+## Usage
 
 ### Configuration Vite
 
@@ -133,9 +133,10 @@ interface VitePluginInspectorOptions {
 }
 ```
 
+
 ## Notes
 Vite-plugin-click-to-vue-component is fork from [vite-plugin-vue-inspector](https://github.com/webfansplz/vite-plugin-vue-inspector) and I rewrote it in order to better serve my working scenarios.
 
-## 📄 License
+## License
 
 [MIT LICENSE](./LICENSE)
