@@ -1,7 +1,9 @@
 import inspectorOptions from 'virtual:vue-inspector-options'
-import App from 'virtual:vue-inspector-path:Overlay.vue'
 
-const CONTAINER_ID = 'vue-inspector-container'
+// import App from 'virtual:vue-inspector-path:Overlay.vue'
+import './overlay.js'
+
+const CONTAINER_ID = 'vue-inspector-container22'
 
 function createInspectorContainer() {
   if (document.getElementById(CONTAINER_ID) != null)
@@ -18,16 +20,9 @@ async function load() {
   if (!isClient)
     return
   createInspectorContainer()
-  const { vue } = inspectorOptions
-  // console.log('load inspectorOptions', vue, `loadVue${vue}`)
+  // const { vue } = inspectorOptions
 
-  let res = {}
-  if (vue === 3)
-    res = await import('./loadVue3.js')
-  else
-    res = await import('./loadVue2.js')
-
-  res.loadVue(CONTAINER_ID, App)
+  document.body.innerHTML += '<vue-inspector></vue-inspector>'
 }
 
 if (inspectorOptions.lazyLoad)
