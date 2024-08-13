@@ -1,68 +1,29 @@
 name: Release
 
+permissions:
+  contents: write
+
 on:
   push:
-    branches: [ main ]
+    tags:
+      - 'v*'
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v2 # 先检出代码
-
-      - name: 初始化node环境
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
         with:
-          node-version: ${{ matrix.node-version }}
-          registry-url: https://registry.npmjs.org/ # 如果不配置将影响publish
+          fetch-depth: 0
 
-      # 修改package.json版本号, 修改后提交到仓库
-      - name: Bump version and push to GitHub
-        uses:  'phips28/gh-action-bump-version@master'
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+
+      - name: Set node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - run: npx changelogithub
         env:
-          GITHUB_TOKEN: ${{ secrets.GIT_ACTION }}
-        with:
-          # minor-wording:  'add,Adds,new'
-          # major-wording:  'MAJOR,cut-major'
-          patch-wording:  'feat,fix'     # Providing patch-wording will override commits
-          # patch-wording:  'feat,release'  # Providing patch-wording will override commits
-                                            # defaulting to a patch bump.
-          # rc-wording:     'RELEASE,alpha'
-
-      - run: npm install
-      # - run: npm run build # npm publish的时候会自动执行 prepublishOnly 脚本（package.json）
-
-      - name: Publish to NPM
-        run: npm publish || true
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      # 到这如果全部成功，那么我们就成功的将代码发布到了npm
-
-      # 下面主要是创建 github 的release
-      # 需要手动修改 package.json 版本
-      # 使用 tyankatsu0105/read-package-version-actions@v1 工具来读取对应的package.json 数据
-      - name: Read package.json
-        uses: tyankatsu0105/read-package-version-actions@v1
-        id: package-version
-
-        # 关于创建 release 的更多参数，可以查看 actions/create-release@v1
-      - name: Create Release for Tag
-        id: release_tag
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GIT_ACTION }} # 这块需要用到 github的token，因为需要对分之进行代码推送
-        with:
-          tag_name: v${{ steps.package-version.outputs.version }}
-          release_name: Release v${{ steps.package-version.outputs.version }}
-          prerelease: false # 是否为预发布版本
-          body: |
-            请点击查看 [更新日志](https://github.com/hellof2e/click-to-vue-component/blob/main/CHANGELOG.md).
-
-      - uses: BobAnkh/auto-generate-changelog@v1.2.5
-        with:
-          REPO_NAME: 'hellof2e/click-to-vue-component'
-          ACCESS_TOKEN: ${{secrets.GIT_ACTION}}
-          PATH: 'CHANGELOG.md'
-          COMMIT_MESSAGE: 'docs(CHANGELOG): update release notes'
-          TYPE: 'feat:Feature,fix:Bug Fixes,docs:Documentation,refactor:Refactor,perf:Performance Improvements'
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
