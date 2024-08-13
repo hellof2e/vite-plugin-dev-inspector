@@ -29,8 +29,8 @@ jobs:
           fetch-depth: 1
           lfs: true
 
-      - name: Prepare for building
-        uses: ./.github/actions/prepare
+      # - name: Prepare for building
+      #   uses: ./.github/actions/prepare
 
       - name: Build Packages
         run: |
