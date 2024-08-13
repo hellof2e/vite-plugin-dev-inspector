@@ -1,5 +1,11 @@
 # vite-plugin-click-to-vue-component
 
+## 0.1.7
+
+### Patch Changes
+
+- cicd
+
 ## 0.1.6
 
 ### Patch Changes
