@@ -9,7 +9,7 @@ A vite plugin which provides the ability that to jump to the local IDE when you 
 
 # vite-plugin-click-to-vue-component
 
-pnpm install vite-plugin-click-to-vue-component -D
+npm install vite-plugin-click-to-vue-component -D
 
 
 ```
