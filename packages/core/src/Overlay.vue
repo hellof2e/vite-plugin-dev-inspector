@@ -228,8 +228,6 @@ export default {
         },
       )
 
-      console.log('_url', _url)
-
       if (this.disableInspectorOnEditorOpen)
         promise.then(this.disable)
 

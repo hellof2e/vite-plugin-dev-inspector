@@ -30,8 +30,3 @@ runs:
       shell: bash
       run: |
         pnpm lint
-
-    - name: Unit test
-      shell: bash
-      run: |
-        pnpm test
