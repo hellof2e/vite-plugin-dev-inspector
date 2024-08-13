@@ -1,6 +1,7 @@
 <script lang="ts">
 import Hi from './Hi.vue'
 import Welcome from './Welcome'
+
 export default {
   name: 'App',
   components: {

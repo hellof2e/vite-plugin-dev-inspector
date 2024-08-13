@@ -21,6 +21,7 @@ export async function compileSFCTemplate(
   { code, id, type }: CompileSFCTemplateOptions,
 ) {
   const s = new MagicString(code)
+  // eslint-disable-next-line n/prefer-global/process
   const relativePath = normalizePath(path.relative(process.cwd(), id))
   const result = await new Promise((resolve) => {
     switch (type) {

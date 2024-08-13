@@ -54,6 +54,7 @@ export function parseJSXIdentifier(name: JSXIdentifier | JSXMemberExpression) {
 }
 
 const FS_PREFIX = '/@fs/'
+// eslint-disable-next-line n/prefer-global/process
 const IS_WINDOWS = process.platform === 'win32'
 const queryRE = /\?.*$/s
 const hashRE = /#.*$/s

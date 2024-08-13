@@ -4,8 +4,8 @@
     "no-console":0,
     "prefer-const":0,
     "no-prototype-builtins":0,
-   "vue/no-parsing-error": ["error", {
-     "invalid-first-character-of-tag-name": false
-   }]
+    "vue/no-parsing-error": ["error", {
+      "invalid-first-character-of-tag-name": false
+    }]
   }
 }
