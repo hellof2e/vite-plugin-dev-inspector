@@ -9,7 +9,6 @@ export default defineConfig({
     Vue(),
     VueJsx(),
     Inspector({
-      enabled: true,
       toggleButtonVisibility: 'always',
       launchEditor: 'code',
     }),
