@@ -8,7 +8,6 @@
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": [
-    "playground-nuxt",
     "playground-vue2",
     "playground-vue3"
   ]
