@@ -4,6 +4,9 @@ name: Release for tag
 
 on:
   push:
+    branches:
+      - main
+
     tags:
       - v*
 
