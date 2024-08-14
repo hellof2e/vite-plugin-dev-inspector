@@ -178,7 +178,7 @@ interface VitePluginInspectorOptions {
 
 
 ## Notes
-Vite-plugin-dev-inspector is fork from [vite-plugin-vue-inspector](https://github.com/webfansplz/vite-plugin-vue-inspector) and I rewrote it in order to better serve my working scenarios.
+Vite-plugin-dev-inspector was inspired by [vite-plugin-vue-inspector](https://github.com/webfansplz/vite-plugin-vue-inspector).
 
 ## License
 
