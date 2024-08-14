@@ -1,4 +1,16 @@
-# vite-plugin-component-inspector
+# vite-plugin-dev-inspector
+
+## 2.0.1
+
+### Patch Changes
+
+- Support all techs
+
+## 2.0.0
+
+### Major Changes
+
+- support all techs
 
 ## 1.0.0
 

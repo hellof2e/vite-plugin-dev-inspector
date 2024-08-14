@@ -129,7 +129,7 @@ importers:
       vite:
         specifier: ^5.4.0
         version: 5.4.0(@types/node@20.8.0)
-      vite-plugin-component-inspector:
+      vite-plugin-dev-inspector:
         specifier: workspace:*
         version: link:../../core
 
@@ -151,7 +151,7 @@ importers:
       sass:
         specifier: ^1.68.0
         version: 1.68.0
-      vite-plugin-component-inspector:
+      vite-plugin-dev-inspector:
         specifier: workspace:*
         version: link:../../core
       vite-plugin-externals:
@@ -179,7 +179,7 @@ importers:
       sass:
         specifier: ^1.68.0
         version: 1.68.0
-      vite-plugin-component-inspector:
+      vite-plugin-dev-inspector:
         specifier: workspace:*
         version: link:../../core
 

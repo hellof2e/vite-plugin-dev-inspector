@@ -7,9 +7,9 @@ A vite plugin which provides the ability that to jump to the local IDE when you 
 
 ```bash
 
-# vite-plugin-component-inspector
+# vite-plugin-dev-inspector
 
-npm install vite-plugin-component-inspector -D
+npm install vite-plugin-dev-inspector -D
 
 
 ```
@@ -23,7 +23,7 @@ npm install vite-plugin-component-inspector -D
 
 import { defineConfig, } from 'vite'
 import { createVuePlugin, } from 'vite-plugin-vue2'
-import Inspector from 'vite-plugin-component-inspector'
+import Inspector from 'vite-plugin-dev-inspector'
 
 export default defineConfig({
   plugins: [
@@ -40,7 +40,7 @@ export default defineConfig({
 
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
-import Inspector from 'vite-plugin-component-inspector'
+import Inspector from 'vite-plugin-dev-inspector'
 
 export default defineConfig({
   plugins: [Vue(), Inspector()],
@@ -52,7 +52,7 @@ export default defineConfig({
 
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import Inspector from 'vite-plugin-component-inspector'
+import Inspector from 'vite-plugin-dev-inspector'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -68,7 +68,7 @@ export default defineConfig({
 
 import { defineConfig } from 'vite'
 import preact from '@preact/preset-vite'
-import Inspector from 'vite-plugin-component-inspector'
+import Inspector from 'vite-plugin-dev-inspector'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -85,7 +85,7 @@ export default defineConfig({
 
 import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
-import Inspector from 'vite-plugin-component-inspector'
+import Inspector from 'vite-plugin-dev-inspector'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -102,7 +102,7 @@ export default defineConfig({
 
 import { defineConfig } from 'vite'
 import solid from 'vite-plugin-solid'
-import Inspector from 'vite-plugin-component-inspector'
+import Inspector from 'vite-plugin-dev-inspector'
 
 export default defineConfig({
   plugins: [
@@ -200,7 +200,7 @@ interface VitePluginInspectorOptions {
 
 
 ## Notes
-Vite-plugin-component-inspector is fork from [vite-plugin-vue-inspector](https://github.com/webfansplz/vite-plugin-vue-inspector) and I rewrote it in order to better serve my working scenarios.
+Vite-plugin-dev-inspector is fork from [vite-plugin-vue-inspector](https://github.com/webfansplz/vite-plugin-vue-inspector) and I rewrote it in order to better serve my working scenarios.
 
 ## License
 

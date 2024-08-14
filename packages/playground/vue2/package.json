@@ -14,7 +14,7 @@
   "devDependencies": {
     "sass": "^1.68.0",
     "vite-plugin-externals": "^0.6.2",
-    "vite-plugin-component-inspector": "workspace:*",
+    "vite-plugin-dev-inspector": "workspace:*",
     "vite-plugin-vue2": "^1.9.3"
   }
 }
