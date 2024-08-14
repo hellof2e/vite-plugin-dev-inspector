@@ -20,7 +20,7 @@ async function load() {
     return
   createInspectorContainer()
 
-  document.body.innerHTML += '<vue-inspector></vue-inspector>'
+  document.body.innerHTML += '<wcs-inspector></wcs-inspector>'
 }
 
 if (inspectorOptions.lazyLoad)

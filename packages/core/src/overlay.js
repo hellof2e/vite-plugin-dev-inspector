@@ -92,7 +92,7 @@ template.innerHTML = `<style>
   </div>
 `
 
-class VueInspector extends HTMLElement {
+class WCSInspector extends HTMLElement {
   constructor() {
     super()
     this.enabled = false
@@ -346,4 +346,4 @@ class VueInspector extends HTMLElement {
   }
 }
 
-customElements.define('vue-inspector', VueInspector)
+customElements.define('wcs-inspector', WCSInspector)
