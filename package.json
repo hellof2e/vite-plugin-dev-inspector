@@ -3,6 +3,7 @@
   "author": "xsf0105",
   "license": "MIT",
   "scripts": {
+    "play:react": "pnpm run -r --filter=./packages/playground/react dev",
     "play:vue3": "pnpm run -r --filter=./packages/playground/vue3 dev",
     "play:vue2": "pnpm run -r --filter=./packages/playground/vue2 dev",
     "lint": "eslint --fix --ext .js,.ts,.vue .",

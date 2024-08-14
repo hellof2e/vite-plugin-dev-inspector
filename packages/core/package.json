@@ -1,11 +1,15 @@
 {
   "name": "vite-plugin-click-to-vue-component",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "jump to local IDE source code while click the element of browser automatically.",
   "author": "xsf0105",
   "license": "MIT",
   "keywords": [
     "vue",
+    "react",
+    "angular",
+    "nuxt",
+    "svelte",
     "vite",
     "vscode",
     "vite-plugin",

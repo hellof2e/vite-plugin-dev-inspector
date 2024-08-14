@@ -1,5 +1,11 @@
 # vite-plugin-click-to-vue-component
 
+## 1.0.0
+
+### Major Changes
+
+- Release 1.x
+
 ## 0.2.1
 
 ### Patch Changes
