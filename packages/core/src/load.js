@@ -1,7 +1,6 @@
 import inspectorOptions from 'virtual:vue-inspector-options'
 
-// import App from 'virtual:vue-inspector-path:Overlay.vue'
-import './overlay.js'
+import './overlay.js' // import Custom Element
 
 const CONTAINER_ID = 'vue-inspector-container22'
 
@@ -20,7 +19,6 @@ async function load() {
   if (!isClient)
     return
   createInspectorContainer()
-  // const { vue } = inspectorOptions
 
   document.body.innerHTML += '<vue-inspector></vue-inspector>'
 }
