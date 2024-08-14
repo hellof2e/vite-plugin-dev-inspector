@@ -47,6 +47,70 @@ export default defineConfig({
 })
 ```
 
+```ts
+// for react
+
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import Inspector from 'vite-plugin-click-to-vue-component'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    react(),
+    Inspector(),
+  ],
+})
+```
+
+```ts
+// for preact
+
+import { defineConfig } from 'vite'
+import preact from '@preact/preset-vite'
+import Inspector from 'vite-plugin-click-to-vue-component'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    preact(),
+    Inspector(),
+  ],
+})
+```
+
+
+```ts
+// for svelte
+
+import { defineConfig } from 'vite'
+import { svelte } from '@sveltejs/vite-plugin-svelte'
+import Inspector from 'vite-plugin-click-to-vue-component'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    svelte(),
+    Inspector(),
+  ],
+})
+```
+
+
+```ts
+// for solid
+
+import { defineConfig } from 'vite'
+import solid from 'vite-plugin-solid'
+
+export default defineConfig({
+  plugins: [
+    svelte(),
+    Inspector(),
+  ],
+})
+```
+
 ### Options
 
 

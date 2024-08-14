@@ -6,10 +6,6 @@ import Inspector from 'vite-plugin-click-to-vue-component'
 export default defineConfig({
   plugins: [
     react(),
-    Inspector({
-      toggleButtonVisibility: 'always',
-      // enabled: true,
-      // disableInspectorOnEditorOpen: true,
-    }),
+    Inspector(),
   ],
 })
