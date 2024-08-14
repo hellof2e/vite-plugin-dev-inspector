@@ -1,3 +1,6 @@
+<p align="center">
+  <a href="https://github.com/hellof2e/vite-plugin-dev-inspector"><img src="./logo.svg" width="180" alt="vite-plugin-dev-inspector"></a>
+</p>
 
 ## Introduction
 
