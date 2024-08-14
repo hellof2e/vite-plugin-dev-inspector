@@ -28,9 +28,7 @@ import inspector from 'vite-plugin-dev-inspector'
 export default defineConfig({
   plugins: [
     createVuePlugin(),
-    inspector({
-      vue: 2
-    }),
+    inspector(),
   ],
 })
 ```
