@@ -7,9 +7,9 @@ A vite plugin which provides the ability that to jump to the local IDE when you 
 
 ```bash
 
-# vite-plugin-click-to-vue-component
+# vite-plugin-component-inspector
 
-npm install vite-plugin-click-to-vue-component -D
+npm install vite-plugin-component-inspector -D
 
 
 ```
@@ -23,7 +23,7 @@ npm install vite-plugin-click-to-vue-component -D
 
 import { defineConfig, } from 'vite'
 import { createVuePlugin, } from 'vite-plugin-vue2'
-import Inspector from 'vite-plugin-click-to-vue-component'
+import Inspector from 'vite-plugin-component-inspector'
 
 export default defineConfig({
   plugins: [
@@ -40,7 +40,7 @@ export default defineConfig({
 
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
-import Inspector from 'vite-plugin-click-to-vue-component'
+import Inspector from 'vite-plugin-component-inspector'
 
 export default defineConfig({
   plugins: [Vue(), Inspector()],
@@ -51,7 +51,7 @@ export default defineConfig({
 // for react
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import Inspector from 'vite-plugin-click-to-vue-component'
+import Inspector from 'vite-plugin-component-inspector'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -66,7 +66,7 @@ export default defineConfig({
 // for preact
 import { defineConfig } from 'vite'
 import preact from '@preact/preset-vite'
-import Inspector from 'vite-plugin-click-to-vue-component'
+import Inspector from 'vite-plugin-component-inspector'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -82,7 +82,7 @@ export default defineConfig({
 // for preact
 import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
-import Inspector from 'vite-plugin-click-to-vue-component'
+import Inspector from 'vite-plugin-component-inspector'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -181,7 +181,7 @@ interface VitePluginInspectorOptions {
 
 
 ## Notes
-Vite-plugin-click-to-vue-component is fork from [vite-plugin-vue-inspector](https://github.com/webfansplz/vite-plugin-vue-inspector) and I rewrote it in order to better serve my working scenarios.
+Vite-plugin-component-inspector is fork from [vite-plugin-vue-inspector](https://github.com/webfansplz/vite-plugin-vue-inspector) and I rewrote it in order to better serve my working scenarios.
 
 ## License
 

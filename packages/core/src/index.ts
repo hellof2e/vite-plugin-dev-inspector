@@ -158,7 +158,7 @@ function VitePluginInspector(options: VitePluginInspectorOptions = DEFAULT_INSPE
 
   return [
     {
-      name: 'vite-plugin-click-to-vue-component',
+      name: 'vite-plugin-component-inspector',
       enforce: 'pre',
       apply(_, { command }) {
         // apply only on serve and not for test
@@ -242,7 +242,7 @@ function VitePluginInspector(options: VitePluginInspectorOptions = DEFAULT_INSPE
       },
     },
     {
-      name: 'vite-plugin-click-to-vue-component:post',
+      name: 'vite-plugin-component-inspector:post',
       enforce: 'post',
       apply(_, { command }) {
         // apply only on serve and not for test
@@ -265,7 +265,7 @@ function VitePluginInspector(options: VitePluginInspectorOptions = DEFAULT_INSPE
         if (!fn.size)
           return
 
-        s.appendLeft(0, `/* Injection by vite-plugin-click-to-vue-component Start */
+        s.appendLeft(0, `/* Injection by vite-plugin-component-inspector Start */
 import { ${Array.from(fn.values()).map(i => `${i} as __${i}`).join(',')} } from 'vue'
 function _interopVNode(vnode) {
   if (vnode && vnode.props && 'data-v-inspector' in vnode.props) {
@@ -276,7 +276,7 @@ function _interopVNode(vnode) {
   return vnode
 }
 ${Array.from(fn.values()).map(i => `function _${i}(...args) { return _interopVNode(__${i}(...args)) }`).join('\n')}
-/* Injection by vite-plugin-click-to-vue-component End */
+/* Injection by vite-plugin-component-inspector End */
 `)
 
         return {

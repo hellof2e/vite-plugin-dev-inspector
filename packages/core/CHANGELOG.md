@@ -1,4 +1,4 @@
-# vite-plugin-click-to-vue-component
+# vite-plugin-component-inspector
 
 ## 1.0.0
 

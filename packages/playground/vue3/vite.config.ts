@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
-import Inspector from 'vite-plugin-click-to-vue-component'
+import Inspector from 'vite-plugin-component-inspector'
 import Inspect from 'vite-plugin-inspect'
 
 export default defineConfig({
