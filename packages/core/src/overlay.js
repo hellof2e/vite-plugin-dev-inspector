@@ -6,24 +6,22 @@ const KEY_DATA = 'data-v-inspector'
 const KEY_IGNORE = 'data-v-inspector-ignore'
 const KEY_PROPS_DATA = '__v_inspector'
 
-function createTemplate(containerVisible) {
+function getData(el) {
+  return el?.__vnode?.props?.[KEY_PROPS_DATA] ?? el?.getAttribute?.(KEY_DATA)
+}
+
+function createTemplate() {
   const template = document.createElement('template')
   template.innerHTML = `<style>
-      *,::after,::before{
-        box-sizing:border-box
-      }
-
-      :host{
-        contain:content;
-        display:inline-block;
-      }
-
+    *,::after,::before{
+      box-sizing: border-box;
+    }
 
     .vue-inspector-container {
       cursor: pointer;
       position: fixed;
       text-align: center;
-      z-index: 2147483647;
+      z-index: 9999;
       font-family: Arial, Helvetica, sans-serif;
     }
 
@@ -39,7 +37,7 @@ function createTemplate(containerVisible) {
     }
 
     .vue-inspector-floats {
-      z-index: 2147483647;
+      z-index: 9999;
       position: fixed;
       transform: translateX(-50%);
       transition: all 0.1s ease-in;
@@ -47,7 +45,7 @@ function createTemplate(containerVisible) {
     }
 
     .vue-inspector-size-indicator {
-      z-index: 2147483646;
+      z-index: 9999;
       position: fixed;
       background-color:#42b88325;
       border: 1px solid #42b88350;
@@ -66,16 +64,25 @@ function createTemplate(containerVisible) {
     </style>
 
     <div>
-      <div id="overlay-container" v-if="overlayVisible && linkParams">
+        <div
+          class="vue-inspector-container"
+          id="vue-inspector-container"
+        >
+          <div class="vue-inspector-button" id="inspector-btn">
+            Code Inspector
+          </div>
+        </div>
+
+      <div id="overlay-container">
         <div
           ref="floatsRef"
           class="vue-inspector-floats vue-inspector-card"
           id="floatsRef"
           :style="floatsStyle"
         >
-          <div>{{ linkParams.title }}:{{ linkParams.line }}:{{ linkParams.column }}</div>
+          <div id="overlay-content"></div>
           <div class="tip">
-            Click to go to the file {{ overlayVisible }}
+            Click to go to the file
           </div>
         </div>
         <div
@@ -93,36 +100,210 @@ class VueInspector extends HTMLElement {
     super()
     this.enabled = false
     this.containerVisible = false
+
+    this.toggleCombo = inspectorOptions.toggleComboKey?.toLowerCase?.()?.split?.('-') ?? false
+    this.disableInspectorOnEditorOpen = inspectorOptions.disableInspectorOnEditorOpen ?? true
+
+    this.overlayVisible = false
+    this.linkParams = {
+      file: '',
+      line: 0,
+      column: 0,
+    }
+    this.position = {
+      x: 0,
+      y: 0,
+      width: 0,
+      height: 0,
+    }
+
+    this.root = null
+
+    this.KEY_IGNORE = KEY_IGNORE
   }
 
-  initContainerVisible() {
+  switchBtnVisible = () => {
+    const switchBtn = this.root.querySelector('#vue-inspector-container')
+    !this.enabled && switchBtn.classList.add('vue-inspector-container--disabled')
+  }
+
+  // 按钮是否展示
+  containerVisible() {
     const { toggleButtonVisibility } = inspectorOptions
     return toggleButtonVisibility === 'always' || (toggleButtonVisibility === 'active' && this.enabled)
   }
 
+  toggleEventListener = () => {
+    const listener = this.enabled ? document.body.addEventListener : document.body.removeEventListener
+
+    listener?.call(document.body, 'mousemove', this.updateLinkParams)
+    listener?.call(document.body, 'resize', this.closeOverlay, true)
+    listener?.call(document.body, 'click', this.handleClick, true)
+  }
+
+  // 隐藏显示浮动弹窗 dom
+  toggleOverlayContainerVisibility = () => {
+    const overlayContainer = this.root.querySelector('#overlay-container')
+    overlayContainer.style.display = this.overlayVisible && this.linkParams ? 'block' : 'none'
+  }
+
+  toggleEnabled = () => {
+    this.enabled = !this.enabled
+    this.overlayVisible = false
+    this.toggleEventListener(this)
+
+    this.toggleOverlayContainerVisibility()
+  }
+
+  onKeydown = (event) => {
+    if (event.repeat || event.key === undefined)
+      return
+
+    const isCombo = this.toggleCombo?.every(key => this.isKeyActive(key, event))
+    if (isCombo)
+      this.toggleEnabled()
+  }
+
+  isKeyActive = (key, event) => {
+    switch (key) {
+      case 'shift':
+      case 'control':
+      case 'alt':
+      case 'meta':
+        return event.getModifierState(key.charAt(0).toUpperCase() + key.slice(1))
+      default:
+        return key === event.key.toLowerCase()
+    }
+  }
+
+  getTargetNode = (e) => {
+    const splitRE = /(.+):([\d]+):([\d]+)$/
+    const path = e.path ?? e.composedPath()
+    if (!path) {
+      return {
+        targetNode: null,
+        params: null,
+      }
+    }
+    const ignoreIndex = path.findIndex(node => node?.hasAttribute?.(KEY_IGNORE))
+    const targetNode = path.slice(ignoreIndex + 1).find(node => getData(node))
+    if (!targetNode) {
+      return {
+        targetNode: null,
+        params: null,
+      }
+    }
+    const match = getData(targetNode)?.match(splitRE)
+    const [_, file, line, column] = match || []
+    return {
+      targetNode,
+      params: match
+        ? {
+            file,
+            line,
+            column,
+            title: file,
+          }
+        : null,
+    }
+  }
+
+  handleClick = (e) => {
+    const { targetNode, params } = this.getTargetNode(e)
+    if (!targetNode)
+      return
+    e.preventDefault()
+    e.stopPropagation()
+    e.stopImmediatePropagation()
+    const { file, line, column } = params
+    this.overlayVisible = false
+
+    // open in editor
+    const url = new URL(
+      `${base}__open-in-editor?file=${encodeURIComponent(`${file}:${line}:${column}`)}`,
+      import.meta.url,
+    )
+
+    this.openInEditor(url)
+  }
+
+  updateLinkParams = (e) => {
+    const { targetNode, params } = this.getTargetNode(e)
+    if (targetNode) {
+      const rect = targetNode.getBoundingClientRect()
+      this.overlayVisible = true
+      this.position.x = rect.x
+      this.position.y = rect.y
+      this.position.width = rect.width
+      this.position.height = rect.height
+      this.linkParams = params
+    }
+    else {
+      this.closeOverlay()
+    }
+  }
+
+  closeOverlay = () => {
+    this.overlayVisible = false
+    this.linkParams = {
+      file: '',
+      line: 0,
+      column: 0,
+    }
+  }
+
+  // Public methods
+  // #enable() {
+  //   if (this.enabled)
+  //     return
+  //   this.#toggleEnabled()
+  // }
+
+  // #disable() {
+  //   if (!this.enabled)
+  //     return
+  //   this.#toggleEnabled()
+  // }
+
+  openInEditor = (baseUrl, file, line, column) => {
+    /**
+     * Vite built-in support
+     * https://github.com/vitejs/vite/blob/d59e1acc2efc0307488364e9f2fad528ec57f204/packages/vite/src/node/server/index.ts#L569-L570
+     */
+    // https://cloud.tencent.com/developer/article/1835877?areaSource=102001.15&traceId=F7-WEDPvu7nSiKRqwwIwl
+    const _url = baseUrl instanceof URL ? baseUrl : `${baseUrl}/__open-in-editor?file=${encodeURIComponent(`${file}:${line}:${column}`)}`
+    const promise = fetch(
+      _url,
+      {
+        mode: 'no-cors',
+      },
+    )
+
+    if (this.disableInspectorOnEditorOpen)
+      promise.then(this.disable)
+
+    return promise
+  }
+
   connectedCallback() {
-    const shadowRoot = this.attachShadow({ mode: 'closed' })
+    this.root = this.attachShadow({ mode: 'closed' })
 
     const template = createTemplate()
-    shadowRoot.appendChild(template.content.cloneNode(true))
+    this.root.appendChild(template.content.cloneNode(true))
 
-    const overlayContainer = shadowRoot.querySelector('#overlay-container')
-    this.initContainerVisible()
-    overlayContainer.style.display = this.containerVisible ? 'block' : 'none'
+    const overlayContainer = this.root.querySelector('#overlay-container')
+    const switchBtn = this.root.querySelector('#vue-inspector-container')
+    const btn = this.root.querySelector('#inspector-btn')
+    const overlayContent = this.root.querySelector('#overlay-content')
+    // {{ linkParams.title }}:{{ linkParams.line }}:{{ linkParams.column }}
 
-    console.log(overlayContainer, 111)
+    btn.onclick = this.toggleEnabled
+    this.containerVisible()
+    this.switchBtnVisible()
+    this.toggleEventListener(this)
 
-    // const { toggleButtonVisibility } = inspectorOptions
-
-    // const root = shadowRoot.querySelector('.vue-inspector-container')
-    // toggle.addEventListener('click', (e) => {
-    //   toggle.classList.toggle('dark')
-
-    //   if (toggle.classList.contains('dark'))
-    //     turnOnLight(e)
-    //   else
-    //     turnOffLight()
-    // })
+    // Expose control to global
+    window.__VUE_INSPECTOR__ = this
   }
 }
 
