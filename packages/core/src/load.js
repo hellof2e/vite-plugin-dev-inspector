@@ -2,7 +2,7 @@ import inspectorOptions from 'virtual:vue-inspector-options'
 
 import './overlay.js' // import Custom Element
 
-const CONTAINER_ID = 'vue-inspector-container22'
+const CONTAINER_ID = 'vue-inspector-container'
 
 function createInspectorContainer() {
   if (document.getElementById(CONTAINER_ID) != null)
@@ -18,8 +18,8 @@ async function load() {
   const isClient = typeof window !== 'undefined'
   if (!isClient)
     return
-  createInspectorContainer()
 
+  createInspectorContainer()
   document.body.innerHTML += '<dev-inspector></dev-inspector>'
 }
 
