@@ -20,7 +20,7 @@ async function load() {
     return
   createInspectorContainer()
 
-  document.body.innerHTML += '<wcs-inspector></wcs-inspector>'
+  document.body.innerHTML += '<dev-inspector></dev-inspector>'
 }
 
 if (inspectorOptions.lazyLoad)

@@ -23,12 +23,12 @@ npm install vite-plugin-dev-inspector -D
 
 import { defineConfig, } from 'vite'
 import { createVuePlugin, } from 'vite-plugin-vue2'
-import Inspector from 'vite-plugin-dev-inspector'
+import inspector from 'vite-plugin-dev-inspector'
 
 export default defineConfig({
   plugins: [
     createVuePlugin(),
-    Inspector({
+    inspector({
       vue: 2
     }),
   ],
@@ -40,74 +40,58 @@ export default defineConfig({
 
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
-import Inspector from 'vite-plugin-dev-inspector'
+import inspector from 'vite-plugin-dev-inspector'
 
 export default defineConfig({
-  plugins: [Vue(), Inspector()],
+  plugins: [
+    Vue(),
+    inspector()
+  ],
 })
 ```
 
 ```ts
 // for react
-
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import Inspector from 'vite-plugin-dev-inspector'
+import inspector from 'vite-plugin-dev-inspector'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    Inspector(),
+    inspector(),
   ],
 })
 ```
 
 ```ts
 // for preact
-
 import { defineConfig } from 'vite'
 import preact from '@preact/preset-vite'
-import Inspector from 'vite-plugin-dev-inspector'
+import inspector from 'vite-plugin-dev-inspector'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     preact(),
-    Inspector(),
+    inspector(),
   ],
 })
 ```
 
 
 ```ts
-// for svelte
-
+// for preact
 import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
-import Inspector from 'vite-plugin-dev-inspector'
+import inspector from 'vite-plugin-dev-inspector'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     svelte(),
-    Inspector(),
-  ],
-})
-```
-
-
-```ts
-// for solid
-
-import { defineConfig } from 'vite'
-import solid from 'vite-plugin-solid'
-import Inspector from 'vite-plugin-dev-inspector'
-
-export default defineConfig({
-  plugins: [
-    svelte(),
-    Inspector(),
+    inspector(),
   ],
 })
 ```
@@ -117,12 +101,6 @@ export default defineConfig({
 
 ```ts
 interface VitePluginInspectorOptions {
-  /**
-   * Vue version
-   * @default 3
-   */
-  vue?: 2 | 3
-
   /**
    * Default enable state
    * @default false

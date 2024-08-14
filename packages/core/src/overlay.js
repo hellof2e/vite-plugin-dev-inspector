@@ -92,7 +92,7 @@ template.innerHTML = `<style>
   </div>
 `
 
-class WCSInspector extends HTMLElement {
+class DevInspector extends HTMLElement {
   constructor() {
     super()
     this.enabled = false
@@ -346,4 +346,4 @@ class WCSInspector extends HTMLElement {
   }
 }
 
-customElements.define('wcs-inspector', WCSInspector)
+customElements.define('dev-inspector', DevInspector)
