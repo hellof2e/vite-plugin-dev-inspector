@@ -1,8 +1,8 @@
-import inspectorOptions from 'virtual:vue-inspector-options'
+import inspectorOptions from 'virtual:dev-inspector-options'
 
 import './overlay.js' // import Custom Element
 
-const CONTAINER_ID = 'vue-inspector-container'
+const CONTAINER_ID = 'dev-inspector-container'
 
 function createInspectorContainer() {
   if (document.getElementById(CONTAINER_ID) != null)

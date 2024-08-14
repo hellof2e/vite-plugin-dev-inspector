@@ -9,7 +9,7 @@ import MagicString from 'magic-string'
 import { compileSFCTemplate } from './compiler'
 import { idToFile, parseVueRequest } from './utils'
 
-export interface VueInspectorClient {
+export interface DevInspectorClient {
   enabled: boolean
   position: {
     x: number
@@ -167,11 +167,11 @@ function VitePluginInspector(options: VitePluginInspectorOptions = DEFAULT_INSPE
       async resolveId(importee: string) {
         // console.log('resolveId', importee)
 
-        if (importee.startsWith('virtual:vue-inspector-options')) {
+        if (importee.startsWith('virtual:dev-inspector-options')) {
           return importee
         }
-        else if (importee.startsWith('virtual:vue-inspector-path:')) {
-          const resolved = importee.replace('virtual:vue-inspector-path:', `${inspectorPath}/`)
+        else if (importee.startsWith('virtual:dev-inspector-path:')) {
+          const resolved = importee.replace('virtual:dev-inspector-path:', `${inspectorPath}/`)
           return resolved
         }
       },
@@ -179,7 +179,7 @@ function VitePluginInspector(options: VitePluginInspectorOptions = DEFAULT_INSPE
       async load(id) {
         // console.log('load', id)
 
-        if (id === 'virtual:vue-inspector-options') {
+        if (id === 'virtual:dev-inspector-options') {
           return `export default ${JSON.stringify({ ...normalizedOptions, base: config.base })}`
         }
         else if (id.startsWith(inspectorPath)) {
@@ -191,7 +191,7 @@ function VitePluginInspector(options: VitePluginInspectorOptions = DEFAULT_INSPE
           if (fs.existsSync(file))
             return await fs.promises.readFile(file, 'utf-8')
           else
-            console.error(`failed to find file for vue-inspector: ${file}, referenced by id ${id}.`)
+            console.error(`failed to find file for dev-inspector: ${file}, referenced by id ${id}.`)
         }
       },
       transform(code, id) {
@@ -208,7 +208,7 @@ function VitePluginInspector(options: VitePluginInspectorOptions = DEFAULT_INSPE
 
         if ((typeof appendTo === 'string' && filename.endsWith(appendTo))
           || (appendTo instanceof RegExp && appendTo.test(filename)))
-          return { code: `${code}\nimport 'virtual:vue-inspector-path:load.js'` }
+          return { code: `${code}\nimport 'virtual:dev-inspector-path:load.js'` }
       },
       configureServer(server) {
         const _printUrls = server.printUrls
@@ -231,7 +231,7 @@ function VitePluginInspector(options: VitePluginInspectorOptions = DEFAULT_INSPE
               injectTo: 'head',
               attrs: {
                 type: 'module',
-                src: `${config.base || '/'}@id/virtual:vue-inspector-path:load.js`,
+                src: `${config.base || '/'}@id/virtual:dev-inspector-path:load.js`,
               },
             },
           ],

@@ -33,7 +33,7 @@
     "src/overlay.js"
   ],
   "scripts": {
-    "lint": "eslint --fix --ext .js,.ts,.vue .",
+    "lint": "eslint --fix --ext .js,.ts,.vue,.jsx .",
     "dev": "tsup --watch",
     "build": "tsup"
   },

@@ -1,4 +1,4 @@
-import inspectorOptions from 'virtual:vue-inspector-options'
+import inspectorOptions from 'virtual:dev-inspector-options'
 
 const base = inspectorOptions.base
 
@@ -15,7 +15,7 @@ template.innerHTML = `<style>
     box-sizing: border-box;
   }
 
-  .vue-inspector-container {
+  .dev-inspector-container {
     cursor: pointer;
     position: fixed;
     text-align: center;
@@ -25,7 +25,7 @@ template.innerHTML = `<style>
     right: 15px;
   }
 
-  .vue-inspector-card {
+  .dev-inspector-card {
     font-family: Arial, Helvetica, sans-serif;
     padding: 5px 8px;
     border-radius: 4px;
@@ -36,7 +36,7 @@ template.innerHTML = `<style>
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
   }
 
-  .vue-inspector-floats {
+  .dev-inspector-floats {
     z-index: 9999;
     position: fixed;
     transform: translateX(-50%);
@@ -44,7 +44,7 @@ template.innerHTML = `<style>
     pointer-events: none;
   }
 
-  .vue-inspector-size-indicator {
+  .dev-inspector-size-indicator {
     z-index: 9999;
     position: fixed;
     background-color:#42b88325;
@@ -54,21 +54,21 @@ template.innerHTML = `<style>
     pointer-events: none;
   }
 
-  .vue-inspector-button {
+  .dev-inspector-button {
     color: #e4c9c9;
   }
 
-  .vue-inspector-button--active {
+  .dev-inspector-button--active {
     color: #42b883;
   }
   </style>
 
   <div data-v-inspector-ignore="true">
       <div
-        class="vue-inspector-container"
+        class="dev-inspector-container"
         id="toggle-inspector-container"
       >
-        <div class="vue-inspector-button" id="inspector-btn">
+        <div class="dev-inspector-button" id="inspector-btn">
           Code Inspector
         </div>
       </div>
@@ -76,7 +76,7 @@ template.innerHTML = `<style>
     <div id="overlay-container">
       <div
         ref="floatsRef"
-        class="vue-inspector-floats vue-inspector-card"
+        class="dev-inspector-floats dev-inspector-card"
         id="floatsRef"
       >
         <div id="overlay-content"></div>
@@ -85,7 +85,7 @@ template.innerHTML = `<style>
         </div>
       </div>
       <div
-        class="vue-inspector-size-indicator"
+        class="dev-inspector-size-indicator"
         :style="sizeIndicatorStyle"
       />
     </div>
@@ -119,7 +119,7 @@ class DevInspector extends HTMLElement {
 
   switchBtnVisible = () => {
     const toggleInspectorContainer = this.root.querySelector('#toggle-inspector-container')
-    !this.enabled && toggleInspectorContainer.classList.add('vue-inspector-container--disabled')
+    !this.enabled && toggleInspectorContainer.classList.add('dev-inspector-container--disabled')
   }
 
   toggleEventListener = () => {
@@ -143,9 +143,9 @@ class DevInspector extends HTMLElement {
   toggleBtnVisible = () => {
     const btn = this.root.querySelector('#inspector-btn')
     if (this.enabled)
-      btn.classList.add('vue-inspector-button--active')
+      btn.classList.add('dev-inspector-button--active')
     else
-      btn.classList.remove('vue-inspector-button--active')
+      btn.classList.remove('dev-inspector-button--active')
   }
 
   toggleEnabled = () => {
@@ -256,7 +256,7 @@ class DevInspector extends HTMLElement {
 
   // update size indicator style
   sizeIndicatorStyle = () => {
-    const targetNode = this.root.querySelector('.vue-inspector-size-indicator')
+    const targetNode = this.root.querySelector('.dev-inspector-size-indicator')
     targetNode.style.left = `${this.position.x}px`
     targetNode.style.top = `${this.position.y}px`
     targetNode.style.width = `${this.position.width}px`

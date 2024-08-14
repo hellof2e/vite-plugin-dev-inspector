@@ -9,6 +9,7 @@
   "updateInternalDependencies": "patch",
   "ignore": [
     "playground-vue2",
-    "playground-vue3"
+    "playground-vue3",
+    "playground-react"
   ]
 }
