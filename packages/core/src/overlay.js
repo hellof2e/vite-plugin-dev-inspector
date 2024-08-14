@@ -23,6 +23,8 @@ function createTemplate() {
       text-align: center;
       z-index: 9999;
       font-family: Arial, Helvetica, sans-serif;
+      top: 15px;
+      right: 15px;
     }
 
     .vue-inspector-card {
@@ -66,7 +68,7 @@ function createTemplate() {
     <div>
         <div
           class="vue-inspector-container"
-          id="vue-inspector-container"
+          id="toggle-inspector-container"
         >
           <div class="vue-inspector-button" id="inspector-btn">
             Code Inspector
@@ -78,7 +80,6 @@ function createTemplate() {
           ref="floatsRef"
           class="vue-inspector-floats vue-inspector-card"
           id="floatsRef"
-          :style="floatsStyle"
         >
           <div id="overlay-content"></div>
           <div class="tip">
@@ -123,15 +124,15 @@ class VueInspector extends HTMLElement {
   }
 
   switchBtnVisible = () => {
-    const switchBtn = this.root.querySelector('#vue-inspector-container')
-    !this.enabled && switchBtn.classList.add('vue-inspector-container--disabled')
+    const toggleInspectorContainer = this.root.querySelector('#toggle-inspector-container')
+    !this.enabled && toggleInspectorContainer.classList.add('vue-inspector-container--disabled')
   }
 
   // 按钮是否展示
-  containerVisible() {
-    const { toggleButtonVisibility } = inspectorOptions
-    return toggleButtonVisibility === 'always' || (toggleButtonVisibility === 'active' && this.enabled)
-  }
+  // containerVisible() {
+  //   const { toggleButtonVisibility } = inspectorOptions
+  //   return toggleButtonVisibility === 'always' || (toggleButtonVisibility === 'active' && this.enabled)
+  // }
 
   toggleEventListener = () => {
     const listener = this.enabled ? document.body.addEventListener : document.body.removeEventListener
@@ -144,13 +145,16 @@ class VueInspector extends HTMLElement {
   // 隐藏显示浮动弹窗 dom
   toggleOverlayContainerVisibility = () => {
     const overlayContainer = this.root.querySelector('#overlay-container')
-    overlayContainer.style.display = this.overlayVisible && this.linkParams ? 'block' : 'none'
+    overlayContainer.style.display = (this.overlayVisible && this.linkParams) ? 'block' : 'none'
+    console.log(overlayContainer, this.overlayVisible, this.linkParams, '隐藏显示浮动弹窗')
   }
 
   toggleEnabled = () => {
+    const btn = this.root.querySelector('#inspector-btn')
+    btn.classList.toggle('vue-inspector-button--active')
     this.enabled = !this.enabled
     this.overlayVisible = false
-    this.toggleEventListener(this)
+    this.toggleEventListener()
 
     this.toggleOverlayContainerVisibility()
   }
@@ -227,8 +231,40 @@ class VueInspector extends HTMLElement {
     this.openInEditor(url)
   }
 
+  floatsStyle = () => {
+    let margin = 10
+    let x = this.position.x + (this.position.width / 2)
+    let y = this.position.y + this.position.height + 5
+
+    const floatsRef = this.root.querySelector('#floatsRef')
+    let floatsWidth = floatsRef?.clientWidth ?? 0
+    let floatsHeight = floatsRef?.clientHeight ?? 0
+
+    x = Math.max(margin, x)
+    x = Math.min(x, window.innerWidth - floatsWidth - margin)
+
+    y = Math.max(margin, y)
+    y = Math.min(y, window.innerHeight - floatsHeight - margin)
+
+    floatsRef.style.left = `${x}px`
+    floatsRef.style.top = `${y}px`
+
+    const overlayContent = this.root.querySelector('#overlay-content')
+    overlayContent.innerHTML = `${this.linkParams.file}:${this.linkParams.line}:${this.linkParams.column}`
+  }
+
+  // 选中元素模块后的背景样式
+  sizeIndicatorStyle = () => {
+    const targetNode = this.root.querySelector('.vue-inspector-size-indicator')
+    targetNode.style.left = `${this.position.x}px`
+    targetNode.style.top = `${this.position.y}px`
+    targetNode.style.width = `${this.position.width}px`
+    targetNode.style.height = `${this.position.height}px`
+  }
+
   updateLinkParams = (e) => {
     const { targetNode, params } = this.getTargetNode(e)
+
     if (targetNode) {
       const rect = targetNode.getBoundingClientRect()
       this.overlayVisible = true
@@ -237,6 +273,11 @@ class VueInspector extends HTMLElement {
       this.position.width = rect.width
       this.position.height = rect.height
       this.linkParams = params
+
+      // 浮动弹窗显示
+      this.toggleOverlayContainerVisibility()
+      this.floatsStyle()
+      this.sizeIndicatorStyle()
     }
     else {
       this.closeOverlay()
@@ -287,20 +328,32 @@ class VueInspector extends HTMLElement {
 
   connectedCallback() {
     this.root = this.attachShadow({ mode: 'closed' })
-
     const template = createTemplate()
     this.root.appendChild(template.content.cloneNode(true))
 
-    const overlayContainer = this.root.querySelector('#overlay-container')
-    const switchBtn = this.root.querySelector('#vue-inspector-container')
-    const btn = this.root.querySelector('#inspector-btn')
-    const overlayContent = this.root.querySelector('#overlay-content')
-    // {{ linkParams.title }}:{{ linkParams.line }}:{{ linkParams.column }}
+    this.toggleCombo && document.body.addEventListener('keydown', this.onKeydown)
+    // bind keydown event
+    this.toggleEventListener()
 
-    btn.onclick = this.toggleEnabled
-    this.containerVisible()
-    this.switchBtnVisible()
-    this.toggleEventListener(this)
+
+    // bind button click event
+    const btn = this.root.querySelector('#inspector-btn')
+    btn.onclick = this.toggleEnabled // 切换按钮状态
+
+
+    // 初始：悬浮弹窗隐藏
+    this.toggleOverlayContainerVisibility()
+
+    // toggle button visibility
+    const toggleInspectorContainer = this.root.querySelector('#toggle-inspector-container')
+    const { toggleButtonVisibility } = inspectorOptions
+    if (toggleButtonVisibility === 'always' || (toggleButtonVisibility === 'active' && this.enabled)) {
+      toggleInspectorContainer.style.display = 'block'
+      this.switchBtnVisible()
+    }
+    else {
+      toggleInspectorContainer.style.display = 'none'
+    }
 
     // Expose control to global
     window.__VUE_INSPECTOR__ = this
