@@ -26,9 +26,7 @@
   "files": [
     "dist",
     "src/load.js",
-    "src/Overlay.vue",
-    "src/loadVue2.js",
-    "src/loadVue3.js"
+    "src/overlay.js"
   ],
   "scripts": {
     "lint": "eslint --fix --ext .js,.ts,.vue .",
