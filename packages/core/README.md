@@ -1,6 +1,20 @@
 <p align="center">
-  <a href="https://github.com/hellof2e/vite-plugin-dev-inspector"><img src="./logo.svg" width="180" alt="vite-plugin-dev-inspector"></a>
+  <a href="https://github.com/hellof2e/vite-plugin-dev-inspector">
+    <img src="https://raw.githubusercontent.com/hellof2e/vite-plugin-dev-inspector/988a71dca91490cf4a604c98609b24f80f7eb383/logo.svg" width="180" alt="vite-plugin-dev-inspector">
+  </a>
 </p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/vite-plugin-dev-inspector" target="_blank" rel="noopener noreferrer"><img src="https://badgen.net/npm/v/vite-plugin-dev-inspector" alt="NPM Version" /></a>
+  <a href="https://github.com/hellof2e/vite-plugin-dev-inspector/blob/main/LICENSE" target="_blank" rel="noopener noreferrer"><img src="https://badgen.net/github/license/hellof2e/vite-plugin-dev-inspector" alt="License" /></a>
+</p>
+
+
+<p align="center">
+<a href="https://stackblitz.com/edit/vitejs-vite-shxjct?file=src%2FApp.vue"><img src="https://developer.stackblitz.com/img/open_in_stackblitz.svg" alt=""></a>
+</p>
+
+
 
 ## Introduction
 

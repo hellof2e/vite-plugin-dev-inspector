@@ -1,9 +1,17 @@
 {
   "name": "vite-plugin-dev-inspector",
-  "version": "2.1.2",
+  "version": "2.1.7",
   "description": "jump to local IDE source code while click the element of browser automatically.",
   "author": "xsf0105",
   "license": "MIT",
+  "homepage": "https://github.com/hellof2e/vite-plugin-dev-inspector#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hellof2e/vite-plugin-dev-inspector.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hellof2e/vite-plugin-dev-inspector/issues"
+  },
   "keywords": [
     "vue",
     "react",
