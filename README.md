@@ -100,7 +100,7 @@ export default defineConfig({
 
 
 ```ts
-// for preact
+// for Svelte
 import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import inspector from 'vite-plugin-dev-inspector'
