@@ -10,7 +10,7 @@
 
 
 <p align="center">
-  （开发环境）点击页面元素，IDE直接打开对应代码文件。任何前端框架都可以使用。
+  （开发环境）点击页面元素，IDE直接打开对应代码文件。支持 Vue2, Vue3, React, Svelte,Angular, SSR等任何前端工程。
 </p>
 <p align="center">
 <a href="https://stackblitz.com/edit/vitejs-vite-shxjct?file=src%2FApp.vue"><img src="https://developer.stackblitz.com/img/open_in_stackblitz.svg" alt=""></a>
