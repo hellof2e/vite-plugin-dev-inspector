@@ -10,6 +10,9 @@
 
 
 <p align="center">
+  （开发环境）点击页面元素，直接打开对应代码文件。
+</p>
+<p align="center">
 <a href="https://stackblitz.com/edit/vitejs-vite-shxjct?file=src%2FApp.vue"><img src="https://developer.stackblitz.com/img/open_in_stackblitz.svg" alt=""></a>
 </p>
 
@@ -17,6 +20,7 @@
 ## Introduction
 
 A vite plugin which provides the ability that to jump to the local IDE when you click the element of browser automatically. It supports Vue2, Vue3, React, Svelte,Angular, SSR(All frameworks).
+
 
 <p align="center">
 <img src="./preview.gif" alt="vite-plugin-vue-inspector">
