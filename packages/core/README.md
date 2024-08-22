@@ -11,7 +11,7 @@
 
 
 <p align="center">
-  （开发环境）点击页面元素，IDE直接打开对应代码文件。
+（开发环境）点击页面元素，IDE直接打开对应代码文件。支持 Vue2, Vue3, React, Svelte,Angular, SSR等任何前端工程。
 </p>
 
 <p align="center">
