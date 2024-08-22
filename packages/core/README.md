@@ -11,6 +11,10 @@
 
 
 <p align="center">
+  （开发环境）点击页面元素，IDE直接打开对应代码文件。
+</p>
+
+<p align="center">
 <a href="https://stackblitz.com/edit/vitejs-vite-shxjct?file=src%2FApp.vue"><img src="https://developer.stackblitz.com/img/open_in_stackblitz.svg" alt=""></a>
 </p>
 
