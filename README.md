@@ -10,9 +10,9 @@
 </p>
 
 
-<p align="center">
+<h4 align="center">
   Vite-plugin-dev-inspector
-</p>
+</h4>
 
 <p align="center">
 <a href="https://stackblitz.com/edit/vitejs-vite-shxjct?file=src%2FApp.vue"><img src="https://developer.stackblitz.com/img/open_in_stackblitz.svg" alt=""></a>
