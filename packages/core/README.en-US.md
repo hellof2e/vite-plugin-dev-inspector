@@ -9,10 +9,15 @@
   <a href="https://github.com/hellof2e/vite-plugin-dev-inspector/blob/main/LICENSE" target="_blank" rel="noopener noreferrer"><img src="https://badgen.net/github/license/hellof2e/vite-plugin-dev-inspector" alt="License" /></a>
 </p>
 
+<h1 align="center">
+  Vite-plugin-dev-inspector
+</h1>
+
 
 <p align="center">
 <a href="https://stackblitz.com/edit/vitejs-vite-shxjct?file=src%2FApp.vue"><img src="https://developer.stackblitz.com/img/open_in_stackblitz.svg" alt=""></a>
 </p>
+
 
 
 ## Introduction

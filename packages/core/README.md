@@ -10,9 +10,9 @@
 </p>
 
 
-<p align="center">
-（开发环境）点击页面元素，IDE直接打开对应代码文件。支持 Vue2, Vue3, React, Svelte,Angular, SSR等任何前端工程。
-</p>
+<h1 align="center">
+  Vite-plugin-dev-inspector
+</h1>
 
 <p align="center">
 <a href="https://stackblitz.com/edit/vitejs-vite-shxjct?file=src%2FApp.vue"><img src="https://developer.stackblitz.com/img/open_in_stackblitz.svg" alt=""></a>
@@ -29,7 +29,7 @@
 
 ## 介绍
 
-一个vite插件，当你点击浏览器的元素时，它可以自动跳转到本地IDE。同时支持 Vue2, Vue3, React, Svelte,Angular, SSR(All frameworks).
+一个Vite插件，点击页面元素，IDE直接打开对应代码文件。支持 Vue2, Vue3, React, Svelte,Angular, SSR等任何前端工程。
 
 <p align="center">
 <img src="./preview.gif" alt="vite-plugin-vue-inspector">
