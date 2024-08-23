@@ -129,7 +129,13 @@ export default defineConfig({
 
 
 ```ts
-interface VitePluginInspectorOptions {
+inspector({
+  /**
+   * Toggle button visibility
+   * @default 'active'
+   */
+  toggleButtonVisibility?: 'always' | 'active' | 'never'
+
   /**
    * Default enable state
    * @default false
@@ -147,12 +153,6 @@ interface VitePluginInspectorOptions {
    * You can also disable it by setting `false`.
    */
   toggleComboKey?: string | false
-
-  /**
-   * Toggle button visibility
-   * @default 'active'
-   */
-  toggleButtonVisibility?: 'always' | 'active' | 'never'
 
   /**
    * Toggle button display position
@@ -202,12 +202,12 @@ interface VitePluginInspectorOptions {
    * @default code (Visual Studio Code)
    */
   launchEditor?: 'appcode' | 'atom' | 'atom-beta' | 'brackets' | 'clion' | 'code' | 'code-insiders' | 'codium' | 'emacs' | 'idea' | 'notepad++' | 'pycharm' | 'phpstorm' | 'rubymine' | 'sublime' | 'vim' | 'visualstudio' | 'webstorm'
-}
+})
 ```
 
 
 ## Notes
-Vite-plugin-dev-inspector is fork from [vite-plugin-vue-inspector](https://github.com/webfansplz/vite-plugin-vue-inspector) and I rewrote it in order to better serve my working scenarios.
+Vite-plugin-dev-inspector is fork from [vite-plugin-vue-inspector](https://github.com/webfansplz/vite-plugin-vue-inspector), but it does not repy on front-end frameworks. It can support any front-end technology stack at the same time, such as Vue 2 & 3, React, Angular, Svelte, Nuxt and SSR.
 
 ## License
 
