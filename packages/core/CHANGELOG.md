@@ -1,5 +1,11 @@
 # vite-plugin-dev-inspector
 
+## 2.2.1
+
+### Patch Changes
+
+- icon button draggable
+
 ## 2.2.0
 
 ### Minor Changes
