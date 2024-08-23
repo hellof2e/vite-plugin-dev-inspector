@@ -11,49 +11,39 @@
 
 
 <p align="center">
-（开发环境）点击页面元素，IDE直接打开对应代码文件。支持 Vue2, Vue3, React, Svelte,Angular, SSR等任何前端工程。
-</p>
-
-<p align="center">
 <a href="https://stackblitz.com/edit/vitejs-vite-shxjct?file=src%2FApp.vue"><img src="https://developer.stackblitz.com/img/open_in_stackblitz.svg" alt=""></a>
 </p>
 
 
-<p align="center">
-  <span>简体中文 | </span>
-  <a href="./README.en-US.md">
-  English
-  </a>
-</p>
+## Introduction
 
-
-## 介绍
-
-一个vite插件，当你点击浏览器的元素时，它可以自动跳转到本地IDE。同时支持 Vue2, Vue3, React, Svelte,Angular, SSR(All frameworks).
+A vite plugin which provides the ability that to jump to the local IDE when you click the element of browser automatically. It supports Vue2, Vue3, React, Svelte,Angular, SSR(All frameworks).
 
 <p align="center">
 <img src="./preview.gif" alt="vite-plugin-vue-inspector">
 </p>
 
-## 安装
+## Installation
 
 ```bash
 
 # vite-plugin-dev-inspector
 
 npm install vite-plugin-dev-inspector -D
+
+
 ```
 
-## 使用
+## Usage
 
 
-### 快捷键
+### Keyboard shortcut (快捷键)
 
 * Mac: Command(⌘) + Shift(⇧)
 * Windows: Ctrl + Shift(⇧)
 
 
-### Vite 配置
+### Configuration Vite
 
 ```ts
 // for Vue2
@@ -137,7 +127,7 @@ export default defineConfig({
 ```ts
 inspector({
   /**
-   * Toggle button visibility / 切换按钮隐藏展示
+   * Toggle button visibility
    * @default 'active'
    */
   toggleButtonVisibility?: 'always' | 'active' | 'never'
@@ -208,7 +198,7 @@ inspector({
 
 
 ## Notes
-Vite-plugin-dev-inspector is fork from [vite-plugin-vue-inspector](https://github.com/webfansplz/vite-plugin-vue-inspector), but it does not repy on front-end frameworks. It can support any front-end technology stack at the same time, such as Vue 2 & 3, React, Angular, Svelte, Nuxt and SSR.
+Vite-plugin-dev-inspector is inspired by [vite-plugin-vue-inspector](https://github.com/webfansplz/vite-plugin-vue-inspector), but it does not repy on front-end frameworks. It can support any front-end technology stack at the same time, such as Vue 2 & 3, React, Angular, Svelte, Nuxt and SSR.
 
 ## License
 

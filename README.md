@@ -19,36 +19,33 @@
 </p>
 
 
+## 介绍
 
-## Introduction
-
-A vite plugin which provides the ability that to jump to the local IDE when you click the element of browser automatically. It supports Vue2, Vue3, React, Svelte,Angular, SSR(All frameworks).
+一个vite插件，当你点击浏览器的元素时，它可以自动跳转到本地IDE。同时支持 Vue2, Vue3, React, Svelte,Angular, SSR(All frameworks).
 
 <p align="center">
 <img src="./preview.gif" alt="vite-plugin-vue-inspector">
 </p>
 
-## Installation
+## 安装
 
 ```bash
 
 # vite-plugin-dev-inspector
 
 npm install vite-plugin-dev-inspector -D
-
-
 ```
 
-## Usage
+## 使用
 
 
-### Keyboard shortcut (快捷键)
+### 快捷键
 
 * Mac: Command(⌘) + Shift(⇧)
 * Windows: Ctrl + Shift(⇧)
 
 
-### Configuration Vite
+### Vite 配置
 
 ```ts
 // for Vue2
@@ -132,7 +129,7 @@ export default defineConfig({
 ```ts
 inspector({
   /**
-   * Toggle button visibility
+   * Toggle button visibility / 切换按钮隐藏展示
    * @default 'active'
    */
   toggleButtonVisibility?: 'always' | 'active' | 'never'
@@ -155,11 +152,6 @@ inspector({
    */
   toggleComboKey?: string | false
 
-  /**
-   * Toggle button display position
-   * @default top-right
-   */
-  toggleButtonPos?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'
 
   /**
    * append an import to the module id ending with `appendTo` instead of adding a script into body
