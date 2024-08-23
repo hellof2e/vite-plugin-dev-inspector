@@ -19,6 +19,14 @@
 </p>
 
 
+<p align="center">
+  <span>简体中文 | </span>
+  <a href="./README.en-US.md">
+  English
+  </a>
+</p>
+
+
 ## 介绍
 
 一个vite插件，当你点击浏览器的元素时，它可以自动跳转到本地IDE。同时支持 Vue2, Vue3, React, Svelte,Angular, SSR(All frameworks).
