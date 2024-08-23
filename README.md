@@ -208,7 +208,7 @@ inspector({
 
 
 ## Notes
-Vite-plugin-dev-inspector is fork from [vite-plugin-vue-inspector](https://github.com/webfansplz/vite-plugin-vue-inspector), but it does not repy on front-end frameworks. It can support any front-end technology stack at the same time, such as Vue 2 & 3, React, Angular, Svelte, Nuxt and SSR.
+Vite-plugin-dev-inspector was inspired by [vite-plugin-vue-inspector](https://github.com/webfansplz/vite-plugin-vue-inspector), but it does not repy on front-end frameworks. It can support any front-end technology stack at the same time, such as Vue 2 & 3, React, Angular, Svelte, Nuxt and SSR.
 
 ## License
 
