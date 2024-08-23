@@ -1,5 +1,11 @@
 # vite-plugin-dev-inspector
 
+## 2.2.2
+
+### Patch Changes
+
+- update readme
+
 ## 2.2.1
 
 ### Patch Changes
