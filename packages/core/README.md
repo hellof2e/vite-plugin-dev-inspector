@@ -41,10 +41,10 @@ npm install vite-plugin-dev-inspector -D
 
 ## Usage
 
-### Keyboard shortcut
+### Keyboard shortcut (快捷键)
 
-- Mac: <kbd>⌘</kbd> + <kbd>⇧</kbd>
-- Windows: <kbd>Ctrl</kbd> + <kbd>⇧</kbd>
+* Mac: Command(⌘) + Shift(⇧)
+* Windows: Ctrl + Shift(⇧)
 
 
 ### Configuration Vite
