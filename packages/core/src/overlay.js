@@ -27,6 +27,8 @@ template.innerHTML = `<style>
     font-family: Arial, Helvetica, sans-serif;
     top: 15px;
     right: 15px;
+    width: 40px;
+    height: 40px;
   }
 
   .dev-inspector-card {
@@ -104,7 +106,7 @@ class DevInspector extends HTMLElement {
     super()
     this.enabled = false
     this.containerVisible = false
-
+    this.isDragging = false
     this.toggleCombo = inspectorOptions.toggleComboKey?.toLowerCase?.()?.split?.('-') ?? false
     this.disableInspectorOnEditorOpen = inspectorOptions.disableInspectorOnEditorOpen ?? true
 
@@ -322,6 +324,50 @@ class DevInspector extends HTMLElement {
     return promise
   }
 
+  // button position
+  containerPosition = () => {
+    // draggable element 选中可拖动的元素
+    const draggableElement = this.root.querySelector('#toggle-inspector-container')
+
+    // toggle button visibility
+    const { toggleButtonVisibility } = inspectorOptions
+    if (toggleButtonVisibility === 'always' || (toggleButtonVisibility === 'active' && this.enabled)) {
+      draggableElement.style.display = 'block'
+      this.switchBtnVisible()
+    }
+    else {
+      draggableElement.style.display = 'none'
+    }
+
+    // draggle element position
+    if (window.localStorage.getItem('inspectorX') && window.localStorage.getItem('inspectorY')) {
+      draggableElement.style.left = window.localStorage.getItem('inspectorX')
+      draggableElement.style.top = window.localStorage.getItem('inspectorY')
+    }
+
+    let offsetX, offsetY
+
+    draggableElement.addEventListener('mousedown', (e) => {
+      this.isDragging = true
+      offsetX = e.clientX - draggableElement.getBoundingClientRect().left
+      offsetY = e.clientY - draggableElement.getBoundingClientRect().top
+    })
+
+    document.addEventListener('mousemove', (e) => {
+      if (this.isDragging) {
+        draggableElement.style.left = `${e.clientX - offsetX}px`
+        draggableElement.style.top = `${e.clientY - offsetY}px`
+        window.localStorage.setItem('inspectorX', `${e.clientX - offsetX}px`)
+        window.localStorage.setItem('inspectorY', `${e.clientY - offsetY}px`)
+      }
+    })
+
+    document.addEventListener('mouseup', () => {
+      if (this.isDragging)
+        this.isDragging = false
+    })
+  }
+
   connectedCallback() {
     this.root = this.attachShadow({ mode: 'closed' })
     this.root.appendChild(template.content.cloneNode(true))
@@ -337,19 +383,11 @@ class DevInspector extends HTMLElement {
     // toggle overlay visibility
     this.toggleOverlayVisibility()
 
-    // toggle button visibility
-    const toggleInspectorContainer = this.root.querySelector('#toggle-inspector-container')
-    const { toggleButtonVisibility } = inspectorOptions
-    if (toggleButtonVisibility === 'always' || (toggleButtonVisibility === 'active' && this.enabled)) {
-      toggleInspectorContainer.style.display = 'block'
-      this.switchBtnVisible()
-    }
-    else {
-      toggleInspectorContainer.style.display = 'none'
-    }
+    // button position(draggable)
+    this.containerPosition()
 
     // Expose control to global
-    window.__VUE_INSPECTOR__ = this
+    window.__DEV_INSPECTOR__ = this
   }
 }
 

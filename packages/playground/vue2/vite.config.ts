@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import { createVuePlugin } from 'vite-plugin-vue2'
-import Inspector from 'vite-plugin-dev-inspector'
+import inspector from 'vite-plugin-dev-inspector'
 
 export default defineConfig({
   plugins: [
@@ -10,32 +10,8 @@ export default defineConfig({
         compositionAPI: true,
       },
     }),
-
-    // viteExternalsPlugin({
-    //   'vue': 'Vue',
-    // }),
-
-    Inspector({
-      toggleButtonVisibility: 'always',
-      // enabled: true,
-      // disableInspectorOnEditorOpen: true,
-    }),
+    inspector({
+      toggleButtonVisibility: 'always', // always：一直展示, never：隐藏, active
+    }) as any,
   ],
-
-  // optimizeDeps: {
-  //   include: optimizedInclude(),
-  //   exclude: [],
-  // },
 })
-
-// function optimizedInclude() {
-//   return [
-//     'qs',
-//     'vue-clipboard2',
-//     'mockjs',
-//     'nprogress',
-//     '@hb/vue-bd-header-nav',
-//     'resize-observer-polyfill',
-//     'throttle-debounce',
-//   ]
-// }
