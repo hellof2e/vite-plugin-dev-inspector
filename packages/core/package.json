@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-dev-inspector",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "description": "jump to local IDE source code while click the element of browser automatically.",
   "author": "xsf0105",
   "license": "MIT",
@@ -46,7 +46,7 @@
     "build": "tsup"
   },
   "peerDependencies": {
-    "vite": "^3.0.0-0 || ^4.0.0-0 || ^5.0.0-0"
+    "vite": "^2.0.0-0 || ^3.0.0-0 || ^4.0.0-0 || ^5.0.0-0"
   },
   "dependencies": {
     "@babel/core": "^7.23.0",

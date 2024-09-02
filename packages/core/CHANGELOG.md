@@ -1,5 +1,11 @@
 # vite-plugin-dev-inspector
 
+## 2.2.5
+
+### Patch Changes
+
+- add viteV2 to peerDependencied
+
 ## 2.2.4
 
 ### Patch Changes
