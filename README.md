@@ -32,7 +32,7 @@
 一个Vite插件，点击页面元素，IDE直接打开对应代码文件。支持 Vue2, Vue3, React, Svelte,Angular, SSR等任何前端工程。
 
 <p align="center">
-<img src="./preview.mp4" alt="preview">
+<img src="./preview.gif" alt="preview">
 </p>
 
 ## 安装
