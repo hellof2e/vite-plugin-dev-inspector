@@ -1,5 +1,11 @@
 # vite-plugin-dev-inspector
 
+## 2.2.7
+
+### Patch Changes
+
+- replace gif
+
 ## 2.2.6
 
 ### Patch Changes
