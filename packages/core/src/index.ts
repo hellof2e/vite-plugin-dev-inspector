@@ -39,6 +39,12 @@ export interface VitePluginInspectorOptions {
   vue?: 2 | 3
 
   /**
+   * Toggle button visibility
+   * @default 'active'
+   */
+  toggleButtonVisibility?: 'always' | 'active' | 'never'
+
+  /**
    * Default enable state
    * @default false
    */
@@ -55,12 +61,6 @@ export interface VitePluginInspectorOptions {
    * You can also disable it by setting `false`.
    */
   toggleComboKey?: string | false
-
-  /**
-   * Toggle button visibility
-   * @default 'active'
-   */
-  toggleButtonVisibility?: 'always' | 'active' | 'never'
 
   /**
    * Toggle button display position
@@ -109,7 +109,7 @@ export interface VitePluginInspectorOptions {
    *
    * @default process.env.LAUNCH_EDITOR ?? code (Visual Studio Code)
    */
-  launchEditor?: 'appcode' | 'atom' | 'atom-beta' | 'brackets' | 'clion' | 'code' | 'code-insiders' | 'codium' | 'emacs' | 'idea' | 'notepad++' | 'pycharm' | 'phpstorm' | 'rubymine' | 'sublime' | 'vim' | 'visualstudio' | 'webstorm' | 'rider' | string
+  launchEditor?: 'appcode' | 'atom' | 'atom-beta' | 'brackets' | 'clion' | 'code' | 'code-insiders' | 'codium' | 'cursor' | 'emacs' | 'idea' | 'notepad++' | 'pycharm' | 'phpstorm' | 'rubymine' | 'sublime' | 'vim' | 'visualstudio' | 'webstorm' | 'rider' | string
 }
 
 const toggleComboKeysMap = {
@@ -217,7 +217,7 @@ function VitePluginInspector(options: VitePluginInspectorOptions = DEFAULT_INSPE
         toggleComboKey && (server.printUrls = () => {
           const keys = normalizeComboKeyPrint(toggleComboKey)
           _printUrls()
-          console.log(`  ${green('➜')}  ${bold('Vue Inspector')}: ${green(`Press ${yellow(keys)} in App to toggle the Inspector`)}\n`)
+          console.log(`  ${green('➜')}  ${bold('Vite Inspector')}: ${green(`Press ${yellow(keys)} in App to toggle the Inspector`)}\n`)
         })
       },
       transformIndexHtml(html) {
@@ -287,4 +287,5 @@ ${Array.from(fn.values()).map(i => `function _${i}(...args) { return _interopVNo
     },
   ]
 }
+
 export default VitePluginInspector
